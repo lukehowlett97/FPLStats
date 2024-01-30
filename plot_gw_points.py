@@ -157,7 +157,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-# Assuming 'df' is your DataFrame
 
 # Calculate the total points for each manager
 df['Total Points'] = df.sum(axis=1)
@@ -294,43 +293,49 @@ import bar_chart_race as bcr
 import pandas as pd
 
 # Assuming 'df' is your DataFrame prepared for the bar chart race
+
 # Make sure your 'df' is in wide format where:
 # - Each row represents a single period (e.g., game week)
 # - Each column represents a different manager
 # - Each cell contains the value to plot (e.g., points for that game week)
 
 # Example: df = pd.DataFrame(Your Data Here)
+df = df.drop(columns = 'Total Points')
+df = df.T
+
+df = df.cumsum()
+
 
 bcr.bar_chart_race(
-    df=df),  # Your prepared DataFrame
-#     filename=  'test',  # Set to None for displaying the animation instead of saving to file
-#     orientation='h',
-#     sort='desc',
-#     n_bars=10,  # You might want to adjust the number of bars displayed
-#     fixed_order=False,
-#     fixed_max=True,
-#     steps_per_period=10,
-#     interpolate_period=False,
-#     label_bars=True,
-#     bar_size=.95,
-#     period_label={'x': .99, 'y': .25, 'ha': 'right', 'va': 'center'},
-#     # Change period_fmt if your index is not datetime
-#     period_fmt=None,  # Set to None or appropriate format string
-#     period_summary_func=None,  # Adjust or remove if not needed
-#     perpendicular_bar_func=None,  # Adjust or remove if not needed
-#     period_length=500,
-#     figsize=(5, 3),
-#     dpi=144,
-#     cmap='dark12',
-#     title='Manager Performance by Game Week',
-#     title_size='',  # Leave empty to use default, or set a specific size
-#     bar_label_size=7,
-#     tick_label_size=7,
-#     # shared_fontdict={'family': 'Helvetica', 'color': '.1'},
-#     scale='linear',
-#     writer=None,
-#     fig=None,
-#     bar_kwargs={'alpha': .7},
-#     filter_column_colors=False
-# )
+    df=df,  # Your prepared DataFrame
+    filename=  r'C:\Users\chcuk\Work\Projects\fpl\bar_race.mp4',  # Set to None for displaying the animation instead of saving to file
+    orientation='h',
+    sort='desc',
+    # n_bars=10,  # You might want to adjust the number of bars displayed
+    fixed_order=False,
+    fixed_max=True,
+    steps_per_period=30,
+    interpolate_period=True,
+    label_bars=True,
+    bar_size=.95,
+    period_label={'x': .99, 'y': .25, 'ha': 'right', 'va': 'center'},
+    # Change period_fmt if your index is not datetime
+    period_fmt=None,  # Set to None or appropriate format string
+    period_summary_func=None,  # Adjust or remove if not needed
+    perpendicular_bar_func=None,  # Adjust or remove if not needed
+    period_length=2000,
+    figsize=(5, 3),
+    dpi=600,
+    cmap='dark12',
+    title='Manager Performance by Game Week',
+    title_size='',  # Leave empty to use default, or set a specific size
+    bar_label_size=7,
+    tick_label_size=7,
+    # shared_fontdict={'family': 'Helvetica', 'color': '.1'},
+    scale='linear',
+    writer=None,
+    fig=None,
+    bar_kwargs={'alpha': .7},
+    filter_column_colors=False
+    )
     
